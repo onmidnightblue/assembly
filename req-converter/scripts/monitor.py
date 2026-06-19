@@ -10,7 +10,7 @@ TARGET_URL = "https://naps.assembly.go.kr:444/reqsubmit/10_mem/20_reqboxsh/10_ma
 CHECK_INTERVAL = 300 # 5분
 TITLE_COLUMN_INDEX = 1 # 글 제목
 
-# 안내창
+# ALERT
 def show_alert(title):
     root = tk.Tk()
     root.withdraw()
@@ -18,7 +18,7 @@ def show_alert(title):
     messagebox.showinfo("알림", f"새로운 요구서가 도착했습니다:\n\n{title}")
     root.destroy()
 
-# 설정
+# SETTINGS
 options = Options()
 options.add_argument("--disable-gpu")
 options.add_argument("--no-sandbox")
@@ -26,12 +26,11 @@ options.add_argument("--no-sandbox")
 driver = webdriver.Edge(options=options) 
 driver.get(TARGET_URL)
 
-# 로그인 대기
+# WAIT FOR LOGIN
 time.sleep(60)
 
+# EXECUTE
 last_latest_title = ""
-
-# 실행
 def check_new_posts():
     global last_latest_title
     try: 
@@ -54,7 +53,7 @@ def check_new_posts():
     except Exception as e:
         print(f"Error: {e}")
 
-# 무한 루프
+# INFINITE LOOP
 while True:
     check_new_posts()
     time.sleep(CHECK_INTERVAL)
