@@ -12,8 +12,8 @@
 | -- | -- | -- | -- |
 | [req-converter](./req-converter/) | 요구서 메세지 변환기 | 2026-03-10 | [보기](./req-converter/README.md) |
 | [fb-collector](./fb-collector/) | 페이스북 게시물 수집기 | 2026-03-20 | [보기](./fb-collector/README.md) |
-| [excel-hwp-converter](./excel-hwp-converter/) | 페이스북 게시물 수집기 | 2026-03-23 | [보기](./excel-hwp-converter/README.md) |
+| [excel-hwp-converter](./excel-hwp-converter/) | 엑셀을 한글로 | 2026-03-23 | [보기](./excel-hwp-converter/README.md) |
+| [duration-extracter](./duration-extracter/) | 재생시간 추출기 | 2026-06-15 | [보기](./duration-extracter/README.md) |
 <!-- pdf-editor -->
-<!-- extract-duration -->
 <!-- excel-sync-tool -->
 <!-- google-sheet-sync-tool -->
