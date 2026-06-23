@@ -151,6 +151,14 @@ npm install
 npm run dev
 ```
 
+<br>
+
+둘 모두 한 번에 실행시키고 싶다면 아래 명령어를 입력한다.
+
+```
+npm run start:all
+```
+
 <img src="readme/6.png" alt="요구서메세지변환기" width="500" />
 
 <br><br>
