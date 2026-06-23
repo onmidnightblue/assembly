@@ -168,19 +168,14 @@ collector.py를 실행시켜 로그인한 후 로봇 아니다를 알려주고, 
 
 1. 실행시키면 TARGET_URL로 자동으로 크롬 창이 열리면서 로그인 화면이 뜬다.<br>
    <img src="readme/1.png" alt="페이스북 로그인 화면" width="500" />
-
 2. 열심히 자동차를 찾거나 횡단보도를 찾아 로봇이 아님을 알려준다.<br>
    <img src="readme/2.png" alt="페이스북 로봇 탐지기" width="500" />
-
 3. 잠시 기다린다.<br>
    <img src="readme/3.png" alt="페이스북 게시글 화면" width="500" />
-
 4. 자동으로 스크롤되며 알아서 수집한다.<br>
    <img src="readme/4.png" alt="페이스북 게시글 화면" width="500" />
-
 5. 터미널 로그에 게시글 앞 부분이 찍히면서 잘 되고 있다는 것을 확인할 수 있다.<br>
    <img src="readme/5.png" alt="터미널" width="500" />
-
 6. 설정한 BATCH_SIZE 만큼 중간중간 저장되면서 설정한 날짜인 TARGET_DATE 에 다다르면 자동으로 종료된다.<br>
    <img src="readme/6.png" alt="엑셀 결과물" width="500" />
 
