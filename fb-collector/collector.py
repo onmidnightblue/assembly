@@ -16,25 +16,31 @@ EXCLUDE_WORDS = ["모든 공감", "좋아요", "댓글", "공유하기", "답글
 # DATE CONVERTER
 def parse_facebook_date(date_str):
     now = datetime.now()
-    if any(x in date_str for x in ['시간', '분', '방금']): # '방금', '분', '시간' 처리
+    
+    # 상대 시간
+    if any(x in date_str for x in ['방금', '분', '시간']):
         return now
-    parts = re.findall(r'\d+', date_str)
-    if not parts: return None
-    num = int(parts[0])
-    try:
-        # n일
-        if '일' in date_str: 
-            return now - timedelta(days=num) 
-        # n월 n일
-        if '월' in date_str:
-            # 연도 미포함
-            if '년' not in date_str:
-                return datetime(now.year, num, int(parts[1]))
-            # 연도 포함
-            else:
-                return datetime(num, int(parts[1]), int(parts[2]))
-    except Exception as e:
-        return None
+    if '어제' in date_str:
+        return now - timedelta(days=1)
+        
+    # "YYYY년 M월 D일" 
+    full_match = re.search(r'(\d{4})년\s*(\d{1,2})월\s*(\d{1,2})일', date_str)
+    if full_match:
+        y, m, d = map(int, full_match.groups())
+        return datetime(y, m, d)
+        
+    # "M월 D일" 
+    short_match = re.search(r'(\d{1,2})월\s*(\d{1,2})일', date_str)
+    if short_match:
+        m, d = map(int, short_match.groups())
+        dt = datetime(now.year, m, d)
+        return dt if dt <= now else dt.replace(year=now.year - 1)
+        
+    # "n일 전" 형태
+    days_match = re.search(r'(\d+)일', date_str)
+    if days_match:
+        return now - timedelta(days=int(days_match.group(1)))
+        
     return None
 
 # CLEAN
@@ -87,7 +93,7 @@ def run_collector():
                     post_dt = parse_facebook_date(text_lines[1])
                     if not post_dt: continue
 
-                    # TARGET_DATE 이전 날짜면 종료
+                    # TARGET_DATE 이전 날짜면 최종 저장 후 종료
                     if post_dt < TARGET_DATE:
                         if data: pd.DataFrame(data).to_excel(f"facebook_final_{datetime.now().strftime('%H%M%S')}.xlsx", index=False)
                         driver.quit()
@@ -96,8 +102,8 @@ def run_collector():
                     content = clean_content(text_lines[2:])
                     if content and content not in seen:
                         seen.add(content)
-                        data.append({"createAt": post_dt.strftime('%Y-%m-%d'), "content": content})
-                        print(f"★ {len(seen)} | {post_dt.strftime('%Y-%m-%d')} | {content[:20]}")
+                        data.append({"createAt": post_dt.strftime('%Y.%m.%d.'), "content": content})
+                        print(f"★ {len(seen)} | {post_dt.strftime('%Y.%m.%d.')} | {content[:20]}")
 
                         # 100개 이상 쌓일 경우 한 번 저장
                         if len(data) >= BATCH_SIZE:
