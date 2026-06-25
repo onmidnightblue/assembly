@@ -1,20 +1,20 @@
-# assembly
+# Assembly
 
-국회 업무 중 반복되는 작업을 줄이기 위해 만든 도구들을 모아 둔 저장소입니다.
+국회사무처 근무 기간 중, 반복되는 수동 업무의 비효율을 개선하기 위해 제작한 자동화 도구 모음입니다.
 
-각 도구의 설치·사용법·상세 변경 이력은 **해당 폴더의 README**를 참고하세요.
+각 도구의 설치·사용법·개발자의 고충·변경 이력은 **프로젝트의 README**를 참고하세요.
 
 <br><br>
 
-## 프로젝트
+## Project
 
-| 이름 | 설명 | 제작일 | README |
-| -- | -- | -- | -- |
-| [req-converter](./req-converter/) | 요구서 메세지 변환기 | 2026-03-10 | [보기](./req-converter/README.md) |
-| [fb-collector](./fb-collector/) | 페이스북 게시물 수집기 | 2026-03-20 | [보기](./fb-collector/README.md) |
-| [excel-hwp-converter](./excel-hwp-converter/) | 엑셀의 수치를 한글 보고서로 | 2026-03-23 | [보기](./excel-hwp-converter/README.md) |
-| [excel-sync-tool](./excel-sync-tool/) | 총괄 데이터를 부서별 시트로 나누고 개별 파일로도 배포, 그리고 다시 취합 | 2026-06-09 | [보기](./excel-sync-tool/README.md) |
-| [duration-extracter](./duration-extracter/) | .mp4 재생시간 추출기 | 2026-06-15 | [보기](./duration-extracter/README.md) |
-| [google-excel-sync-tool](./google-excel-sync-tool/) | 권한에 따라 다르게 보여지는 구글스프레드시트 | 2026-06-16 | [보기](./google-excel-sync-tool/README.md) |
+| 이름 | 설명 | 제작일 | 사용 기술 |
+| :-- | :-- | :-- | :-- |
+| [google-excel-sync-tool](./google-excel-sync-tool/) | 권한에 따라 다르게 보여지는 구글 스프레드시트 | 2026-06-16 | Apps Script |
+| [duration-extracter](./duration-extracter/) | 70개가 넘는 .mp4 파일 재생시간 추출기 | 2026-06-15 | Shell |
+| [excel-sync-tool](./excel-sync-tool/) | 엑셀 시트 분할 및 취합 자동화 | 2026-06-09 | VBA |
+| [excel-hwp-converter](./excel-hwp-converter/) | 엑셀의 수치를 한글 보고서로 | 2026-03-23 | Python, 한글 누름틀 |
+| [fb-collector](./fb-collector/) | 3년치 페이스북 게시물 수집기 | 2026-03-20 | Python |
+| [req-converter](./req-converter/) | 알림을 보내주지 않는 요구서 사이트 모니터링 | 2026-03-10 | Python, TypeScript, React | 
 
 <!-- pdf-editor -->
