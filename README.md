@@ -15,6 +15,6 @@
 | [excel-hwp-converter](./excel-hwp-converter/) | 엑셀의 수치를 한글 보고서로 | 2026-03-23 | [보기](./excel-hwp-converter/README.md) |
 | [excel-sync-tool](./excel-sync-tool/) | 총괄 데이터를 부서별 시트로 나누고 개별 파일로도 배포, 그리고 다시 취합 | 2026-06-09 | [보기](./excel-sync-tool/README.md) |
 | [duration-extracter](./duration-extracter/) | .mp4 재생시간 추출기 | 2026-06-15 | [보기](./duration-extracter/README.md) |
-| [google-sheet-sync-tool](./google-sheet-sync-tool/) | 실시간 동기화 업무보고 스프레드시트 | 2026-06-16 | [보기](./google-sheet-sync-tool/README.md) |
+| [google-excel-sync-tool](./google-excel-sync-tool/) | 권한에 따라 다르게 보여지는 구글스프레드시트 | 2026-06-16 | [보기](./google-excel-sync-tool/README.md) |
 
 <!-- pdf-editor -->

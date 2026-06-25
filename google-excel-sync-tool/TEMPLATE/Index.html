@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+    * { padding: 0; margin: 0; }
+    body { font-family: 'Pretendard', sans-serif; padding: 20px; }
+    #dataForm { display: flex; flex-direction: column; justify-content: space-between; min-height: 90vh }
+    .input-wrap { display: flex; flex-direction: column; gap: 12px;}
+    .button-wrap { display: flex; gap: 12px; margin-top: 20px;}
+    .form-group { display:flex; flex-direction: column; gap: 4px; }
+    label { display: block; font-weight: 600; font-size: 0.85em; margin-bottom: 4px; }
+    input, textarea { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; font-family: 'Pretendard', sans-serif; }
+    textarea { height: 100px; resize: none; }
+    button { flex: 1; padding: 12px; border: none; border-radius: 4px; cursor: pointer; color: white; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <form id="dataForm">
+    <div class='input-wrap'>
+      <input type="hidden" name="id" value="<?= data.id ?>">
+      <div class="form-group"><label>Date</label><input type="date" name="Date" value="<?= data.Date ?>"></div>
+      <div class="form-group"><label>Instruction</label><input type="text" name="Instruction" value="<?= data.Instruction ?>"></div>
+      <div class="form-group"><label>Description</label><textarea name="Description"><?= data.Description ?></textarea></div>
+      <div class="form-group"><label>Department</label><input type="text" name="Department" value="<?= data.Department ?>" ></div>
+      <div class="form-group"><label>Manager</label><input type="text" name="Manager" value="<?= data.Manager ?>"></div>
+      <div class="form-group"><label>Status</label><input type="text" name="Status" value="<?= data.Status ?>"></div>
+      <div class="form-group"><label>StatusDetail</label><textarea name="StatusDetail"><?= data.StatusDetail ?></textarea></div>
+      <div class="form-group"><label>Note</label><input type="text" name="Note" value="<?= data.Note ?>"></div>
+      <div class="form-group"><label>KeyProject</label><input type="text" name="KeyProject" value="<?= data.KeyProject ?>"></div>
+    </div>
+    <div class='button-wrap'>
+      <button id="deleteBtn" type="button" onclick="deleteRow()" style="background: #e74c3c;">DELETE</button>
+      <button id="saveBtn" type="button" onclick="submitForm()" style="background: #3498db;">SAVE</button>
+    </div>
+  </form>
+
+  <script>
+    function submitForm() {
+      const saveBtn = document.getElementById('saveBtn');
+      saveBtn.disabled = true;
+      saveBtn.innerText = "Saving...";
+      
+      google.script.run
+        .withSuccessHandler(() => {
+          alert("Data saved successfully.");
+          google.script.host.close();
+        })
+        .withFailureHandler((err) => {
+          alert("Failed to save: " + err);
+          saveBtn.disabled = false;
+          saveBtn.innerText = "Save";
+        })
+        .processForm(Object.fromEntries(new FormData(document.getElementById('dataForm'))));
+    }
+
+    function deleteRow() {
+    if(confirm("Are you sure you want to delete this item?")) {
+      const deleteBtn = document.getElementById('deleteBtn');
+      const id = document.getElementsByName('id')[0].value;
+      deleteBtn.disabled = true;
+      deleteBtn.innerText = "Deleting...";
+      
+      google.script.run
+        .withSuccessHandler(() => {
+          alert("Deleted successfully.");
+          google.script.host.close();
+        })
+        .withFailureHandler((err) => {
+          alert("Failed to delete: " + err);
+          deleteBtn.disabled = false;
+          deleteBtn.innerText = "Delete";
+        })
+        .deleteDataById(id);
+    }
+  }
+  </script>
+</body>
+</html>
